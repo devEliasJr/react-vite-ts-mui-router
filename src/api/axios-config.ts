@@ -1,6 +1,6 @@
 import axios from "axios";
 import Cookies from "js-cookie";
-import toast from "react-hot-toast";
+import useToast from "../componentes/toast/useToast";
 
 
 const apiClient = axios.create({
@@ -32,10 +32,7 @@ apiClient.interceptors.response.use(
       window.location.href = "/";
     } else if (error.response && error.response.status > 401 && error.response.status < 500) {
       console.log("ERRO:" + error.response.data["message"]);
-      toast.error(error.response.data["message"], {
-        position: "top-center",
-        duration: 4000,
-      });
+      useToast({message: error.response.data["message"], type: "error"});
     }
     return Promise.reject(error);
   }
