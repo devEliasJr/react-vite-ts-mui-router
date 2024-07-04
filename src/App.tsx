@@ -9,8 +9,8 @@ function App() {
       element: <SignInSide />,
     },
     {
-      path: "about",
-      element: <div>About</div>,
+      path: "/dashboard",
+      element: <div></div>,
     },
   ]);
 
