@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import SignInSide from "./Pages/Sign-In";
 import { Box } from "@mui/material";
 import { Toaster } from "./componentes/toast/Toaster";
+import Dashboard from "./Pages/dashboard/Dashboard";
 
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
     },
     {
       path: "/dashboard",
-      element: <div></div>,
+      element: <Dashboard />,
     },
   ]);
 
