@@ -12,6 +12,8 @@ import { FormControl } from "@mui/material";
 import { dotPulse } from "ldrs";
 import theme from "../theme";
 import { useNavigate } from "react-router-dom";
+import { signIn } from "../api/authApi";
+import Cookies from "js-cookie";
 
 interface LoginFormValues {
   email: string;
@@ -28,16 +30,20 @@ export default function SignInSide() {
       .required("Senha é obrigatória"),
   });
 
-  const onSubmit = (
+  const onSubmit = async (
     values: LoginFormValues,
     { setSubmitting }: { setSubmitting: (isSubmitting: boolean) => void }
   ) => {
     try {
-      setTimeout(() => {
-        console.log(`Logando: ${(values.email, values.password)}`);
-        setSubmitting(false);
-        navigate("/dashboard");
-      }, 1000);
+      const response = await signIn({
+        email: values.email,
+        password: values.password,
+      });
+
+      if(response.accessToken) {
+       Cookies.set("accessToken", response.accessToken);
+       navigate("/dashboard");
+      }
     } catch (error) {
       setSubmitting(false);
     }

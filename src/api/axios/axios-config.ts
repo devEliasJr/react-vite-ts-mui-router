@@ -1,6 +1,6 @@
 import axios from "axios";
 import Cookies from "js-cookie";
-import useToast from "../componentes/toast/useToast";
+import useToast from "../../componentes/toast/useToast";
 
 
 const apiClient = axios.create({
@@ -13,7 +13,7 @@ const apiClient = axios.create({
 
 // Add an interceptor to include the access token in the Authorization header
 apiClient.interceptors.request.use((config) => {
-  const accessToken = Cookies.get("access_token");
+  const accessToken = Cookies.get("accessToken");
 
   if (accessToken) {
     // Provide a default value for the headers object if it is undefined
